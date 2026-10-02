@@ -24,7 +24,7 @@ namespace TarExtractorMod
         private const string SapExtractorPrefab = "piece_sapcollector";
 
         // Dark, tar-like tint applied to the cloned Sap Extractor materials.
-        private static readonly Color TarTint = new Color(0.22f, 0.18f, 0.16f, 1f);
+        private static readonly Color TarTint = new Color(0.44f, 0.36f, 0.32f, 1f);
 
         internal static ManualLogSource Log;
         internal static ConfigEntry<float> SecondsPerTar;
