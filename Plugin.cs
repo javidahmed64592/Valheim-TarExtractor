@@ -70,7 +70,7 @@ namespace TarExtractorMod
             loc.AddTranslation("English", new Dictionary<string, string>
             {
                 { "piece_tarextractor", "Tar Extractor" },
-                { "piece_tarextractor_description", "Slowly extracts Tar from a tar pit." },
+                { "piece_tarextractor_description", "Extract tar from tar pits." },
                 { "piece_tarextractor_extract", "Extract Tar" },
                 { "piece_tarextractor_empty", "No Tar collected yet" },
                 { "piece_tarextractor_extracted", "Tar extracted" },
