@@ -66,7 +66,7 @@ namespace TarExtractorMod
     [HarmonyPatch(typeof(Player), nameof(Player.PlacePiece))]
     internal static class Player_PlacePiece_Patch
     {
-        private static bool Prefix(Player __instance, Piece __0, Vector3 __1, ref bool __result)
+        private static bool Prefix(Player __instance, Piece __0, Vector3 __1)
         {
             if (__0 == null || __0.GetComponent<TarExtractor>() == null)
             {
@@ -79,7 +79,6 @@ namespace TarExtractorMod
             }
 
             __instance.Message(MessageHud.MessageType.Center, PlacementState.Message);
-            __result = false;
             return false;
         }
     }
