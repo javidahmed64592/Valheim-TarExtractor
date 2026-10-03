@@ -1,7 +1,7 @@
 {
   "name": "TarExtractor",
   "description": "Adds a buildable Tar Extractor that passively collects Tar from Plains tar pits.",
-  "version_number": "0.1.0",
+  "version_number": "0.1.1",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2351",
     "ValheimModding-Jotunn-2.30.2"

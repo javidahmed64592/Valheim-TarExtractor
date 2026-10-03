@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+- Fixed method signature for Player.PlacePiece patch.
+
 ## 0.1.0
 
 - New buildable piece, the **Tar Extractor**, available from the Hammer's Crafting tab.
