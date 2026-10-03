@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "टार निष्कर्षक",
+  "piece_tarextractor_description": "टार के गड्ढों से टार निकालें।",
+  "piece_tarextractor_extract": "टार इकट्ठा करें",
+  "piece_tarextractor_empty": "अभी तक कोई टार इकट्ठा नहीं हुआ",
+  "piece_tarextractor_extracted": "टार निकाला गया",
+  "msg_tarextractor_needstarpit": "टार के गड्ढे में रखा जाना चाहिए"
+}

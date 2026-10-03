@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Zberač dechtu",
+  "piece_tarextractor_description": "Získava decht z dechtových jám.",
+  "piece_tarextractor_extract": "Vybrať decht",
+  "piece_tarextractor_empty": "Zatiaľ nebol nazbieraný žiadny decht",
+  "piece_tarextractor_extracted": "Decht vybratý",
+  "msg_tarextractor_needstarpit": "Musí byť umiestnený v dechtovej jame"
+}

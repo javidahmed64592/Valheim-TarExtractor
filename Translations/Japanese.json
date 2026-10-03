@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "タール取り",
+  "piece_tarextractor_description": "タールの池からタールを抽出する。",
+  "piece_tarextractor_extract": "タールを採集",
+  "piece_tarextractor_empty": "まだタールが溜まっていない",
+  "piece_tarextractor_extracted": "タールを抽出した",
+  "msg_tarextractor_needstarpit": "タールの池に設置する必要がある"
+}

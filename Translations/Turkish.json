@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Katran çıkarıcı",
+  "piece_tarextractor_description": "Katran çukurlarından katran çıkar.",
+  "piece_tarextractor_extract": "Katran topla",
+  "piece_tarextractor_empty": "Henüz katran toplanmadı",
+  "piece_tarextractor_extracted": "Katran çıkarıldı",
+  "msg_tarextractor_needstarpit": "Bir katran çukuruna yerleştirilmelidir"
+}

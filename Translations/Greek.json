@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Εξαγωγέας πίσσας",
+  "piece_tarextractor_description": "Εξάγει πίσσα από λάκκους πίσσας.",
+  "piece_tarextractor_extract": "Συλλογή πίσσας",
+  "piece_tarextractor_empty": "Δεν έχει συλλεχθεί πίσσα ακόμη",
+  "piece_tarextractor_extracted": "Η πίσσα εξήχθη",
+  "msg_tarextractor_needstarpit": "Πρέπει να τοποθετηθεί σε λάκκο πίσσας"
+}

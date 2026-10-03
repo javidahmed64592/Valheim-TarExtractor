@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Estrattore di pece",
+  "piece_tarextractor_description": "Estrae la pece dalle pozze di pece.",
+  "piece_tarextractor_extract": "Raccogli pece",
+  "piece_tarextractor_empty": "Nessuna pece raccolta per ora",
+  "piece_tarextractor_extracted": "Pece estratta",
+  "msg_tarextractor_needstarpit": "Deve essere posizionato in una pozza di pece"
+}

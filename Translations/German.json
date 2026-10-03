@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Teerextraktor",
+  "piece_tarextractor_description": "Gewinne Teer aus Teergruben.",
+  "piece_tarextractor_extract": "Teer sammeln",
+  "piece_tarextractor_empty": "Noch kein Teer gesammelt",
+  "piece_tarextractor_extracted": "Teer gewonnen",
+  "msg_tarextractor_needstarpit": "Muss in einer Teergrube platziert werden"
+}

@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Tjæreudtrækker",
+  "piece_tarextractor_description": "Udtrækker tjære fra tjæregruber.",
+  "piece_tarextractor_extract": "Indsaml tjære",
+  "piece_tarextractor_empty": "Ingen tjære indsamlet endnu",
+  "piece_tarextractor_extracted": "Tjære udtrukket",
+  "msg_tarextractor_needstarpit": "Skal placeres i en tjæregrube"
+}

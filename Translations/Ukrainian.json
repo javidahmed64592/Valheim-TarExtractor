@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Видобувач смоли",
+  "piece_tarextractor_description": "Видобувайте смолу зі смоляних ям.",
+  "piece_tarextractor_extract": "Зібрати смолу",
+  "piece_tarextractor_empty": "Смолу ще не зібрано",
+  "piece_tarextractor_extracted": "Смолу видобуто",
+  "msg_tarextractor_needstarpit": "Потрібно встановити в смоляній ямі"
+}

@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "沥青提取器",
+  "piece_tarextractor_description": "从沥青坑中提取沥青。",
+  "piece_tarextractor_extract": "收集沥青",
+  "piece_tarextractor_empty": "尚未收集到沥青",
+  "piece_tarextractor_extracted": "已提取沥青",
+  "msg_tarextractor_needstarpit": "必须放置在沥青坑中"
+}

@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Extracteur de goudron",
+  "piece_tarextractor_description": "Permet d'extraire le goudron des fosses de goudron.",
+  "piece_tarextractor_extract": "Collecter le goudron",
+  "piece_tarextractor_empty": "Aucun goudron collecté pour l'instant",
+  "piece_tarextractor_extracted": "Goudron extrait",
+  "msg_tarextractor_needstarpit": "Doit être placé dans une fosse de goudron"
+}

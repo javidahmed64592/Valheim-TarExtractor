@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Kátránysajtoló",
+  "piece_tarextractor_description": "Kátrány kinyerése a kátránygödrökből.",
+  "piece_tarextractor_extract": "Kátrány begyűjtése",
+  "piece_tarextractor_empty": "Még nincs összegyűjtött kátrány",
+  "piece_tarextractor_extracted": "Kátrány kinyerve",
+  "msg_tarextractor_needstarpit": "Kátránygödörbe kell helyezni"
+}

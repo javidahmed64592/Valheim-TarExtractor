@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Tervanjuoksuttaja",
+  "piece_tarextractor_description": "Tällä voit juoksuttaa tervaa tervakuopista.",
+  "piece_tarextractor_extract": "Juoksuta tervaa",
+  "piece_tarextractor_empty": "Tervaa ei ole vielä kerätty",
+  "piece_tarextractor_extracted": "Terva juoksutettu",
+  "msg_tarextractor_needstarpit": "On sijoitettava tervakuoppaan"
+}

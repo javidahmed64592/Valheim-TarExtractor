@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Extractor de smoală",
+  "piece_tarextractor_description": "Extrage smoala din gropile de smoală.",
+  "piece_tarextractor_extract": "Colectează smoala",
+  "piece_tarextractor_empty": "Nu s-a colectat încă smoală",
+  "piece_tarextractor_extracted": "Smoală extrasă",
+  "msg_tarextractor_needstarpit": "Trebuie plasat într-o groapă de smoală"
+}

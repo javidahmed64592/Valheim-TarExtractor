@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Tar Extractor",
+  "piece_tarextractor_description": "Extract tar from tar pits.",
+  "piece_tarextractor_extract": "Extract Tar",
+  "piece_tarextractor_empty": "No Tar collected yet",
+  "piece_tarextractor_extracted": "Tar extracted",
+  "msg_tarextractor_needstarpit": "Must be placed in a tar pit"
+}

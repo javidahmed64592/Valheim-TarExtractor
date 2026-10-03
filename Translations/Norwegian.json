@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Tjæretapp",
+  "piece_tarextractor_description": "Utvinn tjære fra tjæregroper.",
+  "piece_tarextractor_extract": "Sank tjære",
+  "piece_tarextractor_empty": "Ingen tjære samlet ennå",
+  "piece_tarextractor_extracted": "Tjære utvunnet",
+  "msg_tarextractor_needstarpit": "Må plasseres i en tjæregrop"
+}
