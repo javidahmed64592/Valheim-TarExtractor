@@ -18,7 +18,7 @@ namespace TarExtractorMod
     {
         public const string PluginGUID = "javidahmed64592.tarextractor";
         public const string PluginName = "Tar Extractor";
-        public const string PluginVersion = "0.1.1";
+        public const string PluginVersion = "0.1.0";
 
         internal const string PrefabName = "piece_tarextractor";
         private const string SapExtractorPrefab = "piece_sapcollector";
