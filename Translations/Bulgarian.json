@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Извлекател на катран",
+  "piece_tarextractor_description": "Извличай катран от катранени ями.",
+  "piece_tarextractor_extract": "Събери катран",
+  "piece_tarextractor_empty": "Все още няма събран катран",
+  "piece_tarextractor_extracted": "Катранът е извлечен",
+  "msg_tarextractor_needstarpit": "Трябва да се постави в катранена яма"
+}

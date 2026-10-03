@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Darvas sūknis",
+  "piece_tarextractor_description": "Sūknē darvu no darvas bedrēm.",
+  "piece_tarextractor_extract": "Savākt darvu",
+  "piece_tarextractor_empty": "Darva vēl nav savākta",
+  "piece_tarextractor_extracted": "Darva iegūta",
+  "msg_tarextractor_needstarpit": "Jānovieto darvas bedrē"
+}

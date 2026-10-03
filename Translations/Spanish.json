@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Extractor de brea",
+  "piece_tarextractor_description": "Extrae brea de los pozos de brea.",
+  "piece_tarextractor_extract": "Recolectar brea",
+  "piece_tarextractor_empty": "Aún no se ha recolectado brea",
+  "piece_tarextractor_extracted": "Brea extraída",
+  "msg_tarextractor_needstarpit": "Debe colocarse en un pozo de brea"
+}

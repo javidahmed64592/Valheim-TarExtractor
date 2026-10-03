@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "焦油萃取器",
+  "piece_tarextractor_description": "從焦油坑中萃取焦油。",
+  "piece_tarextractor_extract": "收集焦油",
+  "piece_tarextractor_empty": "尚未收集到焦油",
+  "piece_tarextractor_extracted": "已萃取焦油",
+  "msg_tarextractor_needstarpit": "必須放置在焦油坑中"
+}

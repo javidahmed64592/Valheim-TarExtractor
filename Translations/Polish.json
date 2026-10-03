@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Odsysacz smoły",
+  "piece_tarextractor_description": "Odessij smołę z jam smolnych.",
+  "piece_tarextractor_extract": "Zbierz smołę",
+  "piece_tarextractor_empty": "Nie zebrano jeszcze smoły",
+  "piece_tarextractor_extracted": "Smoła zebrana",
+  "msg_tarextractor_needstarpit": "Musi zostać umieszczony w jamie smolnej"
+}

@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
@@ -18,13 +18,26 @@ namespace TarExtractorMod
     {
         public const string PluginGUID = "javidahmed64592.tarextractor";
         public const string PluginName = "Tar Extractor";
-        public const string PluginVersion = "0.1.0";
+        public const string PluginVersion = "0.2.0";
 
         internal const string PrefabName = "piece_tarextractor";
         private const string SapExtractorPrefab = "piece_sapcollector";
 
         // Dark, tar-like tint applied to the cloned Sap Extractor materials.
         private static readonly Color TarTint = new Color(0.44f, 0.36f, 0.32f, 1f);
+
+        // Very dark purple replacing the Sap Extractor's green glow and particles.
+        private static readonly Color TarGlow = new Color(0.025f, 0.005f, 0.035f, 1f);
+
+        // Shown only while the extractor holds Tar (toggled by TarExtractor).
+        internal const string NotEmptyEffectName = "NotEmptyEffect";
+
+        // The Growth's (BlobTar) oozing splashes, moved to where the Sap Extractor's light was.
+        private const string GrowthPrefab = "BlobTar";
+        private const string GrowthOozePath = "Visual/particles/wetsplsh";
+
+        // Embedded translation files: TarExtractor.Translations.<Language>.json
+        private const string TranslationResourcePrefix = "TarExtractor.Translations.";
 
         internal static ManualLogSource Log;
         internal static ConfigEntry<float> SecondsPerTar;
@@ -64,18 +77,23 @@ namespace TarExtractorMod
             _harmony?.UnpatchSelf();
         }
 
+        // Loads every embedded Translations/<Language>.json. Missing languages fall back to English.
         private static void AddLocalization()
         {
             var loc = LocalizationManager.Instance.GetLocalization();
-            loc.AddTranslation("English", new Dictionary<string, string>
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            foreach (string resource in assembly.GetManifestResourceNames())
             {
-                { "piece_tarextractor", "Tar Extractor" },
-                { "piece_tarextractor_description", "Extract tar from tar pits." },
-                { "piece_tarextractor_extract", "Extract Tar" },
-                { "piece_tarextractor_empty", "No Tar collected yet" },
-                { "piece_tarextractor_extracted", "Tar extracted" },
-                { "msg_tarextractor_needstarpit", "Must be placed in a tar pit" },
-            });
+                if (!resource.StartsWith(TranslationResourcePrefix) || !resource.EndsWith(".json")) continue;
+
+                string language = resource.Substring(
+                    TranslationResourcePrefix.Length,
+                    resource.Length - TranslationResourcePrefix.Length - ".json".Length);
+                using (var reader = new StreamReader(assembly.GetManifestResourceStream(resource)))
+                {
+                    loc.AddJsonFile(language, reader.ReadToEnd());
+                }
+            }
         }
 
         private void AddTarExtractor()
@@ -130,6 +148,128 @@ namespace TarExtractorMod
             prefab.AddComponent<TarExtractor>();
 
             TintRenderers(prefab);
+            RecolorEffects(prefab);
+            ReplaceLightWithOoze(prefab);
+
+            // Hidden until the extractor holds Tar; also keeps the placement ghost clean.
+            Transform notEmpty = FindChild(prefab.transform, NotEmptyEffectName);
+            if (notEmpty != null)
+            {
+                notEmpty.gameObject.SetActive(false);
+            }
+            else
+            {
+                Log.LogWarning($"No '{NotEmptyEffectName}' found on the cloned prefab - effects stay always on.");
+            }
+        }
+
+        // Turns the green glow and sap particles of the cloned extractor dark purple.
+        private static void RecolorEffects(GameObject prefab)
+        {
+            foreach (ParticleSystem system in prefab.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                ParticleSystem.MainModule main = system.main;
+                main.startColor = TarGlow;
+
+                // A coloured gradient over lifetime would tint the particles back to green; keep only its fade.
+                ParticleSystem.ColorOverLifetimeModule overLifetime = system.colorOverLifetime;
+                if (overLifetime.enabled)
+                {
+                    overLifetime.color = WhiteKeepAlpha(overLifetime.color);
+                }
+            }
+
+            foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>(true))
+            {
+                Material[] materials = renderer.sharedMaterials;
+                for (int i = 0; i < materials.Length; i++)
+                {
+                    if (materials[i] == null || !materials[i].HasProperty("_EmissionColor")) continue;
+
+                    // Mesh materials were already copied by TintRenderers; particle materials are still shared.
+                    if (renderer is ParticleSystemRenderer)
+                    {
+                        materials[i] = new Material(materials[i]);
+                    }
+                    materials[i].SetColor("_EmissionColor", TarGlow);
+                }
+                renderer.sharedMaterials = materials;
+            }
+        }
+
+        private static ParticleSystem.MinMaxGradient WhiteKeepAlpha(ParticleSystem.MinMaxGradient source)
+        {
+            switch (source.mode)
+            {
+                case ParticleSystemGradientMode.Color:
+                    return new ParticleSystem.MinMaxGradient(new Color(1f, 1f, 1f, source.color.a));
+                case ParticleSystemGradientMode.TwoColors:
+                    return new ParticleSystem.MinMaxGradient(
+                        new Color(1f, 1f, 1f, source.colorMin.a), new Color(1f, 1f, 1f, source.colorMax.a));
+                case ParticleSystemGradientMode.Gradient:
+                    return new ParticleSystem.MinMaxGradient(WhiteKeepAlpha(source.gradient));
+                case ParticleSystemGradientMode.TwoGradients:
+                    return new ParticleSystem.MinMaxGradient(
+                        WhiteKeepAlpha(source.gradientMin), WhiteKeepAlpha(source.gradientMax));
+                default:
+                    return source;
+            }
+        }
+
+        private static Gradient WhiteKeepAlpha(Gradient source)
+        {
+            var gradient = new Gradient();
+            gradient.SetKeys(
+                new[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(Color.white, 1f) },
+                source.alphaKeys);
+            gradient.mode = source.mode;
+            return gradient;
+        }
+
+        // Removes the Sap Extractor's light and puts a small copy of the Growth's oozing splashes in its place.
+        private static void ReplaceLightWithOoze(GameObject prefab)
+        {
+            Light light = prefab.GetComponentInChildren<Light>(true);
+            if (light == null)
+            {
+                Log.LogWarning("No light found on the cloned prefab - the ooze effect is not added.");
+                return;
+            }
+
+            Transform parent = light.transform.parent;
+            Vector3 position = light.transform.localPosition;
+            UnityEngine.Object.DestroyImmediate(light.gameObject);
+
+            GameObject growth = PrefabManager.Instance.GetPrefab(GrowthPrefab);
+            Transform ooze = growth != null ? growth.transform.Find(GrowthOozePath) : null;
+            if (ooze == null)
+            {
+                Log.LogWarning($"Could not find '{GrowthOozePath}' on '{GrowthPrefab}' - no ooze effect.");
+                return;
+            }
+
+            GameObject copy = UnityEngine.Object.Instantiate(ooze.gameObject, parent, false);
+            copy.name = "tar_ooze";
+            copy.transform.localPosition = position;
+            copy.SetActive(true);
+
+            ParticleSystem system = copy.GetComponent<ParticleSystem>();
+            ParticleSystem.ShapeModule shape = system.shape;
+            shape.radius *= 0.25f;
+            ParticleSystem.EmissionModule emission = system.emission;
+            emission.rateOverTimeMultiplier *= 0.3f;
+            ParticleSystem.MainModule main = system.main;
+            main.startSizeMultiplier *= 0.4f;
+            main.startSpeedMultiplier *= 0.5f;
+        }
+
+        internal static Transform FindChild(Transform root, string name)
+        {
+            foreach (Transform child in root.GetComponentsInChildren<Transform>(true))
+            {
+                if (child.name == name) return child;
+            }
+            return null;
         }
 
         private static void ClearConnectionRequirement(Piece piece)

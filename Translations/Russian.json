@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Экстрактор дегтя",
+  "piece_tarextractor_description": "Извлекает деготь из дегтярных ям.",
+  "piece_tarextractor_extract": "Собрать деготь",
+  "piece_tarextractor_empty": "Деготь ещё не собран",
+  "piece_tarextractor_extracted": "Деготь извлечён",
+  "msg_tarextractor_needstarpit": "Нужно установить в дегтярной яме"
+}

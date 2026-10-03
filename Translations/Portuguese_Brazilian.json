@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Coletor de betume",
+  "piece_tarextractor_description": "Colete betume dos poços de betume.",
+  "piece_tarextractor_extract": "Coletar betume",
+  "piece_tarextractor_empty": "Nenhum betume coletado ainda",
+  "piece_tarextractor_extracted": "Betume extraído",
+  "msg_tarextractor_needstarpit": "Deve ser colocado em um poço de betume"
+}

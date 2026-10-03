@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Tjörutappi",
+  "piece_tarextractor_description": "Safnar tjöru úr tjörugryfjum.",
+  "piece_tarextractor_extract": "Taka tjöru",
+  "piece_tarextractor_empty": "Engri tjöru safnað enn",
+  "piece_tarextractor_extracted": "Tjöru safnað",
+  "msg_tarextractor_needstarpit": "Verður að vera sett í tjörugryfju"
+}

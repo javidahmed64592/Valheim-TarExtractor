@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Deguto trauktuvas",
+  "piece_tarextractor_description": "Išgaukite degutą iš deguto duobių.",
+  "piece_tarextractor_extract": "Surinkti degutą",
+  "piece_tarextractor_empty": "Deguto dar nesurinkta",
+  "piece_tarextractor_extracted": "Degutas išgautas",
+  "msg_tarextractor_needstarpit": "Turi būti pastatytas deguto duobėje"
+}

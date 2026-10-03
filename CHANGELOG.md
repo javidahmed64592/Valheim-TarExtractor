@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.0
+
+- Fixed the mod failing to load on the current Valheim version ("Cannot get result from void method `Player::PlacePiece`").
+- New tar-themed effects:
+  - The Sap Extractor's green glow and particles are now a very dark purple.
+  - The green light has been removed.
+  - Oozing tar splashes, borrowed from the Growth, now drip from the spout.
+  - These effects only show while the extractor holds Tar, and are no longer visible on the placement ghost.
+- Localization support for all languages supported by Valheim (except Abenaki, which falls back to English).
+  - Translations reuse Valheim's own terms for Tar and the Sap Extractor where available.
+  - Translation files live in `Translations/<Language>.json` and are embedded in the mod.
+
 ## 0.1.0
 
 - New buildable piece, the **Tar Extractor**, available from the Hammer's Crafting tab.

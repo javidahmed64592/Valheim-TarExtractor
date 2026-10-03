@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Sběrač dehtu",
+  "piece_tarextractor_description": "Nasává dehet z dehtových jam.",
+  "piece_tarextractor_extract": "Vyjmout dehet",
+  "piece_tarextractor_empty": "Zatím nebyl nasbírán žádný dehet",
+  "piece_tarextractor_extracted": "Dehet vyjmut",
+  "msg_tarextractor_needstarpit": "Musí být umístěn v dehtové jámě"
+}

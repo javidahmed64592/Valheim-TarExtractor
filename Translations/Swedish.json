@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Tjärtapp",
+  "piece_tarextractor_description": "Utvinn tjära ur tjärgropar.",
+  "piece_tarextractor_extract": "Samla tjära",
+  "piece_tarextractor_empty": "Ingen tjära insamlad än",
+  "piece_tarextractor_extracted": "Tjära utvunnen",
+  "msg_tarextractor_needstarpit": "Måste placeras i en tjärgrop"
+}

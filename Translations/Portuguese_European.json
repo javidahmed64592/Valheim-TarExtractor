@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Extrator de alcatrão",
+  "piece_tarextractor_description": "Extrai alcatrão dos poços de alcatrão.",
+  "piece_tarextractor_extract": "Recolher alcatrão",
+  "piece_tarextractor_empty": "Ainda não foi recolhido alcatrão",
+  "piece_tarextractor_extracted": "Alcatrão extraído",
+  "msg_tarextractor_needstarpit": "Tem de ser colocado num poço de alcatrão"
+}

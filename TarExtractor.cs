@@ -14,6 +14,7 @@ namespace TarExtractorMod
         private const string LastTickKey = "TarExtractor_lastTick";
 
         private ZNetView _nview;
+        private GameObject _notEmptyEffect;
 
         private void Awake()
         {
@@ -25,7 +26,26 @@ namespace TarExtractorMod
                 return;
             }
 
+            Transform notEmpty = TarExtractorPlugin.FindChild(transform, TarExtractorPlugin.NotEmptyEffectName);
+            _notEmptyEffect = notEmpty != null ? notEmpty.gameObject : null;
+
             InvokeRepeating(nameof(UpdateTick), UnityEngine.Random.Range(0f, 2f), 2f);
+            // Every client reads the synced level, so all players see the effect.
+            InvokeRepeating(nameof(UpdateEffects), 0f, 1f);
+        }
+
+        private void UpdateEffects()
+        {
+            if (_notEmptyEffect == null || !_nview.IsValid())
+            {
+                return;
+            }
+
+            bool hasTar = _nview.GetZDO().GetInt(LevelKey, 0) > 0;
+            if (_notEmptyEffect.activeSelf != hasTar)
+            {
+                _notEmptyEffect.SetActive(hasTar);
+            }
         }
 
         private void UpdateTick()
@@ -88,6 +108,7 @@ namespace TarExtractorMod
 
             zdo.Set(LevelKey, 0);
             zdo.Set(LastTickKey, ZNet.instance.GetTime().Ticks);
+            UpdateEffects();
 
             SpawnTar(amount);
             user.Message(MessageHud.MessageType.Center, "$piece_tarextractor_extracted");

@@ -4,7 +4,7 @@
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>TarExtractor</AssemblyName>
     <Description>Adds a buildable Tar Extractor that passively collects Tar from Plains tar pits.</Description>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
@@ -92,6 +92,12 @@
 
   <ItemGroup Condition="'$(GITHUB_ACTIONS)' != 'true'">
     <Publicize Include="assembly_valheim" />
+  </ItemGroup>
+
+  <!-- Translations/<Language>.json, embedded and loaded by TarExtractorPlugin.AddLocalization.
+       <Language> must match a Valheim language name (English, French, German, ...). -->
+  <ItemGroup>
+    <EmbeddedResource Include="Translations\*.json" LogicalName="TarExtractor.Translations.%(Filename).json" />
   </ItemGroup>
 
   <!-- CI-only: NuGet packages that bundle game + BepInEx + Jotunn DLLs.

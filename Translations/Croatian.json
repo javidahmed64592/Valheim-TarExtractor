@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Ekstraktor katrana",
+  "piece_tarextractor_description": "Izvlači katran iz katranskih jama.",
+  "piece_tarextractor_extract": "Skupi katran",
+  "piece_tarextractor_empty": "Još nema prikupljenog katrana",
+  "piece_tarextractor_extracted": "Katran izvučen",
+  "msg_tarextractor_needstarpit": "Mora se postaviti u katransku jamu"
+}

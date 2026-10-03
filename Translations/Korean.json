@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "타르 채취기",
+  "piece_tarextractor_description": "타르 구덩이에서 타르를 뽑아냅니다.",
+  "piece_tarextractor_extract": "타르 수집",
+  "piece_tarextractor_empty": "아직 채취한 타르 없음",
+  "piece_tarextractor_extracted": "타르를 채취했습니다",
+  "msg_tarextractor_needstarpit": "타르 구덩이에 설치해야 합니다"
+}

@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "Teerextractor",
+  "piece_tarextractor_description": "Win teer uit teerputten.",
+  "piece_tarextractor_extract": "Teer verzamelen",
+  "piece_tarextractor_empty": "Nog geen teer verzameld",
+  "piece_tarextractor_extracted": "Teer gewonnen",
+  "msg_tarextractor_needstarpit": "Moet in een teerput worden geplaatst"
+}

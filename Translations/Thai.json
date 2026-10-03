@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "อุปกรณ์เก็บน้ำมันดิน",
+  "piece_tarextractor_description": "เก็บน้ำมันดินจากบ่อน้ำมันดิน",
+  "piece_tarextractor_extract": "เก็บน้ำมันดิน",
+  "piece_tarextractor_empty": "ยังไม่มีน้ำมันดิน",
+  "piece_tarextractor_extracted": "เก็บน้ำมันดินแล้ว",
+  "msg_tarextractor_needstarpit": "ต้องวางในบ่อน้ำมันดิน"
+}

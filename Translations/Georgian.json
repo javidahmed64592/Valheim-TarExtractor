@@ -1,0 +1,8 @@
+{
+  "piece_tarextractor": "კუპრის ექსტრაქტორი",
+  "piece_tarextractor_description": "მოიპოვეთ კუპრი კუპრის ორმოებიდან.",
+  "piece_tarextractor_extract": "კუპრის შეგროვება",
+  "piece_tarextractor_empty": "კუპრი ჯერ არ შეგროვებულა",
+  "piece_tarextractor_extracted": "კუპრი მოპოვებულია",
+  "msg_tarextractor_needstarpit": "უნდა განთავსდეს კუპრის ორმოში"
+}
