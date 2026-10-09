@@ -18,7 +18,7 @@ namespace TarExtractorMod
     {
         public const string PluginGUID = "javidahmed64592.tarextractor";
         public const string PluginName = "Tar Extractor";
-        public const string PluginVersion = "0.2.0";
+        public const string PluginVersion = "0.2.1";
 
         internal const string PrefabName = "piece_tarextractor";
         private const string SapExtractorPrefab = "piece_sapcollector";
@@ -126,10 +126,7 @@ namespace TarExtractorMod
         {
             Piece piece = prefab.GetComponent<Piece>();
 
-            // --- Diagnostics: shows what the cloned Piece / SapCollector expose in this game version.
-            LogFields("Piece", piece, "connect");
             Component sap = prefab.GetComponent("SapCollector");
-            LogFields("SapCollector", sap, null);
 
             // --- The vanilla extractor draws from an Ancient Root's resource pool; we replace its logic.
             if (sap != null)
@@ -304,19 +301,6 @@ namespace TarExtractorMod
                     }
                 }
                 renderer.sharedMaterials = tinted;
-            }
-        }
-
-        private static void LogFields(string label, object target, string nameFilter)
-        {
-            if (target == null) return;
-            Log.LogInfo($"[diagnostic] {label} fields:");
-            foreach (FieldInfo field in target.GetType().GetFields(
-                         BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
-            {
-                if (nameFilter != null &&
-                    field.Name.IndexOf(nameFilter, StringComparison.OrdinalIgnoreCase) < 0) continue;
-                Log.LogInfo($"    {field.FieldType.Name} {field.Name} = {field.GetValue(target)}");
             }
         }
     }
