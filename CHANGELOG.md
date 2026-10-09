@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Removed diagnostic log lines that were used for development purposes.
+
 ## 0.2.0
 
 - Fixed the mod failing to load on the current Valheim version ("Cannot get result from void method `Player::PlacePiece`").
