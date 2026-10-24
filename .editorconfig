@@ -94,7 +94,9 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 dotnet_style_coalesce_expression = false
 dotnet_style_collection_initializer = true:suggestion
 dotnet_style_explicit_tuple_names = true:suggestion
-dotnet_style_namespace_match_folder = true:suggestion
+# The namespace is TarExtractorMod because a namespace named TarExtractor would clash with the TarExtractor class
+dotnet_style_namespace_match_folder = false
+dotnet_diagnostic.IDE0130.severity = none
 dotnet_style_null_propagation = false
 dotnet_style_object_initializer = true:suggestion
 dotnet_style_operator_placement_when_wrapping = beginning_of_line
