@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Added an `.editorconfig`, `Directory.Build.props` and a CI workflow that runs `dotnet format` and a Release build.
+- Reformatted the code to match the new code style rules (no behaviour change).
+- Renamed some internal static fields and made string comparisons ordinal to satisfy the new code analysis rules.
+
 ## 0.2.1
 
 - Removed diagnostic log lines that were used for development purposes.
