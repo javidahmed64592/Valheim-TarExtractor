@@ -1,3 +1,7 @@
+[![CI](https://img.shields.io/github/actions/workflow/status/javidahmed64592/valheim-tarextractor/ci.yml?branch=main&style=flat-square&label=CI&logo=github)](https://github.com/javidahmed64592/valheim-tarextractor/actions/workflows/ci.yml)
+[![Package](https://img.shields.io/github/actions/workflow/status/javidahmed64592/valheim-tarextractor/package.yml?branch=main&style=flat-square&label=Package&logo=github)](https://github.com/javidahmed64592/valheim-tarextractor/actions/workflows/package.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # TarExtractor
 
 Adds a buildable Tar Extractor that passively collects Tar from Plains tar pits.
@@ -29,3 +33,7 @@ Find it in the Hammer's **Crafting** tab. It needs a Workbench nearby and the sa
 | ---------------- | ------- | ------------------------------------------------- |
 | `Seconds Per Tar` | `60`   | Seconds it takes to produce 1 Tar.                |
 | `Max Tar`         | `200`  | Maximum amount of Tar one extractor can hold.     |
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/javidahmed64592/Valheim-TarExtractor/blob/main/LICENSE) file for details.
