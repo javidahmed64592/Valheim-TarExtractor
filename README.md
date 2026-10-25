@@ -6,9 +6,9 @@
 
 Adds a buildable Tar Extractor that passively collects Tar from Plains tar pits.
 
-![TarExtractor Example](https://github.com/javidahmed64592/Valheim-TarExtractor/raw/main/game_screenshot.png)
+![TarExtractor Example](https://github.com/javidahmed64592/Valheim-TarExtractor/raw/main/images/game_screenshot_1.png)
 
-## How it works
+## How It Works
 
 The Tar Extractor works like the Sap Extractor, but for tar pits instead of Ancient Roots:
 
@@ -17,22 +17,20 @@ The Tar Extractor works like the Sap Extractor, but for tar pits instead of Anci
 - Interact with it to collect the stored Tar. It drops next to the extractor.
 - Progress is saved on the piece, so it keeps filling up while you are away.
 
-## Building it
+## Building It
 
 Find it in the Hammer's **Crafting** tab. It needs a Workbench nearby and the same materials as the Sap Extractor:
 
-| Material        | Amount |
-| --------------- | ------ |
-| Yggdrasil wood  | 10     |
-| Black metal     | 5      |
-| Dvergr extractor | 1     |
+| Material         | Amount |
+| ---------------- | ------ |
+| Yggdrasil wood   | 10     |
+| Black metal      | 5      |
+| Dvergr extractor | 1      |
 
 ## Configuration
 
-| Setting          | Default | Description                                       |
-| ---------------- | ------- | ------------------------------------------------- |
-| `Seconds Per Tar` | `60`   | Seconds it takes to produce 1 Tar.                |
-| `Max Tar`         | `200`  | Maximum amount of Tar one extractor can hold.     |
+Settings are in the BepInEx config file `javidahmed64592.tarextractor.cfg`.
+You can change how long the extractor takes to produce 1 Tar and how much Tar it can hold.
 
 ## License
 
