@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -13,6 +14,11 @@ public class TarExtractor : MonoBehaviour, Hoverable, Interactable
 {
     private const string LevelKey = "TarExtractor_level";
     private const string LastTickKey = "TarExtractor_lastTick";
+    private const string ExtractRpc = "TarExtractor_Extract";
+    private const string ResultRpc = "TarExtractor_Result";
+
+    /// <summary>Every placed extractor that is loaded (not placement ghosts).</summary>
+    private static readonly List<TarExtractor> Instances = [];
 
     private ZNetView _nview;
     private GameObject _notEmptyEffect;
@@ -27,12 +33,35 @@ public class TarExtractor : MonoBehaviour, Hoverable, Interactable
             return;
         }
 
+        Instances.Add(this);
+        _nview.Register(ExtractRpc, RPC_Extract);
+        _nview.Register<bool>(ResultRpc, RPC_Result);
+
         Transform notEmpty = TarExtractorPlugin.FindChild(transform, TarExtractorPlugin.NotEmptyEffectName);
         _notEmptyEffect = notEmpty != null ? notEmpty.gameObject : null;
 
         InvokeRepeating(nameof(UpdateTick), UnityEngine.Random.Range(0f, 2f), 2f);
         // Every client reads the synced level, so all players see the effect.
         InvokeRepeating(nameof(UpdateEffects), 0f, 1f);
+    }
+
+    private void OnDestroy()
+    {
+        _ = Instances.Remove(this);
+    }
+
+    /// <summary>How many loaded extractors stand in the tar pit.</summary>
+    internal static int CountIn(Location pit)
+    {
+        int count = 0;
+        foreach (TarExtractor extractor in Instances)
+        {
+            if (extractor != null && TarPit.Contains(pit, extractor.transform.position))
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     private void UpdateEffects()
@@ -95,25 +124,42 @@ public class TarExtractor : MonoBehaviour, Hoverable, Interactable
             return false;
         }
 
-        // Make sure we are the one modifying the ZDO.
-        _nview.ClaimOwnership();
+        // Only the owner of the extractor's data empties it, like the vanilla Sap Extractor, so two players
+        // collecting at the same moment can't both get the Tar.
+        _nview.InvokeRPC(ExtractRpc);
+        return true;
+    }
+
+    private void RPC_Extract(long sender)
+    {
+        if (!_nview.IsValid() || !_nview.IsOwner())
+        {
+            return;
+        }
+
         UpdateTick();
 
         ZDO zdo = _nview.GetZDO();
         int amount = zdo.GetInt(LevelKey, 0);
-        if (amount <= 0)
+        if (amount > 0)
         {
-            user.Message(MessageHud.MessageType.Center, "$piece_tarextractor_empty");
-            return true;
+            zdo.Set(LevelKey, 0);
+            zdo.Set(LastTickKey, ZNet.instance.GetTime().Ticks);
+            UpdateEffects();
+            SpawnTar(amount);
         }
 
-        zdo.Set(LevelKey, 0);
-        zdo.Set(LastTickKey, ZNet.instance.GetTime().Ticks);
-        UpdateEffects();
+        _nview.InvokeRPC(sender, ResultRpc, amount > 0);
+    }
 
-        SpawnTar(amount);
-        user.Message(MessageHud.MessageType.Center, "$piece_tarextractor_extracted");
-        return true;
+    /// <summary>Tells the player who collected what happened.</summary>
+    private void RPC_Result(long sender, bool extracted)
+    {
+        if (Player.m_localPlayer != null)
+        {
+            Player.m_localPlayer.Message(MessageHud.MessageType.Center,
+                extracted ? "$piece_tarextractor_extracted" : "$piece_tarextractor_empty");
+        }
     }
 
     public bool UseItem(Humanoid user, ItemDrop.ItemData item)

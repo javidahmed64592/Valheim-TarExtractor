@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0
+
+- Collecting Tar is now handled by whoever's game is looking after the extractor, like the vanilla Sap Extractor, so two players collecting at the same moment can no longer both get the Tar.
+- New `Max Per Pit` setting: the most Tar Extractors that can be built in one tar pit. The default of 0 means no limit, so nothing changes for extractors you have already built. When the pit is full, the placement ghost turns red and a message says why.
+- Declared the mod as required on the server and every client to Jotunn, with matching minor versions.
+- Removed a leftover log message that referred to diagnostics which no longer exist.
+- Added a CI check that the version matches in every file.
+
 ## 0.3.1
 
 - Updated the BepInExPack_Valheim dependency to 5.4.2360.

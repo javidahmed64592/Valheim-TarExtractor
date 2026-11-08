@@ -30,7 +30,18 @@ Find it in the Hammer's **Crafting** tab. It needs a Workbench nearby and the sa
 ## Configuration
 
 Settings are in the BepInEx config file `javidahmed64592.tarextractor.cfg`.
-You can change how long the extractor takes to produce 1 Tar and how much Tar it can hold.
+Settings marked "(Synced with server)" use the server's values when the server has the mod installed.
+
+## Compatibility
+
+- The Tar Extractor is built from the vanilla Sap Extractor, so mods that change the Sap Extractor may change it too.
+- It looks for the vanilla tar pit locations, so world generation mods that rename or replace them may stop it being placed.
+- This mod has not been tested with a gamepad, only with keyboard and mouse.
+
+## Uninstalling
+
+Tar Extractors disappear from the world when the mod is removed, along with any Tar stored in them.
+Collect the Tar and deconstruct them first to get their materials back.
 
 ## License
 

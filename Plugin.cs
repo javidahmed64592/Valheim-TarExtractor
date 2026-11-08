@@ -11,6 +11,7 @@ using HarmonyLib;
 using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
+using Jotunn.Utils;
 
 using UnityEngine;
 
@@ -18,11 +19,12 @@ namespace TarExtractorMod;
 
 [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 [BepInDependency(Jotunn.Main.ModGuid)]
+[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
 public class TarExtractorPlugin : BaseUnityPlugin
 {
     public const string PluginGUID = "javidahmed64592.tarextractor";
     public const string PluginName = "Tar Extractor";
-    public const string PluginVersion = "0.3.1";
+    public const string PluginVersion = "0.4.0";
 
     internal const string PrefabName = "piece_tarextractor";
     private const string SapExtractorPrefab = "piece_sapcollector";
@@ -56,6 +58,7 @@ public class TarExtractorPlugin : BaseUnityPlugin
     internal static ManualLogSource _log;
     internal static ConfigEntry<float> _secondsPerTar;
     internal static ConfigEntry<int> _maxTar;
+    internal static ConfigEntry<int> _maxPerPit;
 
     private Harmony _harmony;
 
@@ -66,15 +69,23 @@ public class TarExtractorPlugin : BaseUnityPlugin
         _secondsPerTar = Config.Bind(
             "Tar Extractor", "Seconds Per Tar", 60f,
             new ConfigDescription(
-                "Seconds it takes the Tar Extractor to produce 1 Tar.",
+                "Seconds it takes the Tar Extractor to produce 1 Tar. (Synced with server)",
                 null,
                 new ConfigurationManagerAttributes { IsAdminOnly = true }));
 
         _maxTar = Config.Bind(
             "Tar Extractor", "Max Tar", 200,
             new ConfigDescription(
-                "Maximum amount of Tar a Tar Extractor can hold.",
+                "Maximum amount of Tar a Tar Extractor can hold. (Synced with server)",
                 null,
+                new ConfigurationManagerAttributes { IsAdminOnly = true }));
+
+        _maxPerPit = Config.Bind(
+            "Tar Extractor", "Max Per Pit", 0,
+            new ConfigDescription(
+                "Most Tar Extractors that can be built in one tar pit. 0 means no limit. Extractors already built " +
+                "are kept when the limit is lowered. (Synced with server)",
+                new AcceptableValueRange<int>(0, 100),
                 new ConfigurationManagerAttributes { IsAdminOnly = true }));
 
         AddLocalization();
@@ -153,7 +164,7 @@ public class TarExtractorPlugin : BaseUnityPlugin
         else
         {
             _log.LogWarning("No SapCollector component found on the cloned prefab - the vanilla " +
-                           "component may have been renamed. Check the diagnostic output above.");
+                           "component may have been renamed.");
         }
 
         // --- The vanilla piece must connect to an Ancient Root. Clear any such requirement.
