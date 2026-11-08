@@ -7,6 +7,7 @@
 - Declared the mod as required on the server and every client to Jotunn, with matching minor versions.
 - Removed a leftover log message that referred to diagnostics which no longer exist.
 - Added a CI check that the version matches in every file.
+- Moved `package.sh` into `.github/scripts` and made it the same for every mod: the name, version and DLL now come from `manifest.json` and the `.csproj`.
 
 ## 0.3.1
 
