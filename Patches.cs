@@ -8,7 +8,16 @@ internal static class PlacementState
 {
     /// <summary>True while the player is aiming a Tar Extractor ghost outside a tar pit.</summary>
     internal static bool _blocked;
-    internal const string Message = "$msg_tarextractor_needstarpit";
+
+    /// <summary>Why the ghost is blocked, shown when the player tries to place it.</summary>
+    internal static string _message;
+
+    internal static void Show(Player player, string message)
+    {
+        int max = TarExtractorPlugin._maxPerPit.Value;
+        player.Message(MessageHud.MessageType.Center,
+            Localization.instance.Localize(message, max.ToString(System.Globalization.CultureInfo.InvariantCulture)));
+    }
 }
 
 /// <summary>
@@ -26,13 +35,15 @@ internal static class Player_UpdatePlacementGhost_Patch
             return;
         }
 
-        if (TarPit.IsInTarPit(ghost.transform.position))
+        string problem = TarPit.PlacementProblem(ghost.transform.position);
+        if (problem == null)
         {
             PlacementState._blocked = false;
             return;
         }
 
         PlacementState._blocked = true;
+        PlacementState._message = problem;
         __instance.m_placementStatus = Player.PlacementStatus.Invalid;
         __instance.SetPlacementGhostValid(false);
     }
@@ -57,13 +68,13 @@ internal static class Player_UpdatePlacement_Patch
 
         if (ZInput.GetButtonDown("Attack") || ZInput.GetButtonDown("JoyPlace"))
         {
-            __instance.Message(MessageHud.MessageType.Center, PlacementState.Message);
+            PlacementState.Show(__instance, PlacementState._message);
         }
     }
 }
 
 /// <summary>
-/// Backstop: even if something lets PlacePiece through, refuse outside a tar pit.
+/// Backstop: even if something lets PlacePiece through, refuse outside a tar pit or in a full one.
 /// __0 = Piece, __1 = position (positional for the same reason as above).
 /// </summary>
 [HarmonyPatch(typeof(Player), nameof(Player.PlacePiece))]
@@ -79,12 +90,13 @@ internal static class Player_PlacePiece_Patch
             return true;
         }
 
-        if (TarPit.IsInTarPit(__1))
+        string problem = TarPit.PlacementProblem(__1);
+        if (problem == null)
         {
             return true;
         }
 
-        __instance.Message(MessageHud.MessageType.Center, PlacementState.Message);
+        PlacementState.Show(__instance, problem);
         return false;
     }
 }

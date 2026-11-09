@@ -18,25 +18,47 @@ internal static class TarPit
 
     internal static bool IsInTarPit(Vector3 position)
     {
+        return Find(position) != null;
+    }
+
+    /// <summary>The tar pit the position is in, or null.</summary>
+    internal static Location Find(Vector3 position)
+    {
         Refresh();
 
         foreach (Location location in _cache)
         {
-            if (location == null)
+            if (location != null && Contains(location, position))
             {
-                continue;
-            }
-
-            // Compare on the horizontal plane only.
-            Vector3 offset = location.transform.position - position;
-            offset.y = 0f;
-            if (offset.magnitude <= location.m_exteriorRadius)
-            {
-                return true;
+                return location;
             }
         }
 
-        return false;
+        return null;
+    }
+
+    /// <summary>Compares on the horizontal plane only.</summary>
+    internal static bool Contains(Location location, Vector3 position)
+    {
+        Vector3 offset = location.transform.position - position;
+        offset.y = 0f;
+        return offset.magnitude <= location.m_exteriorRadius;
+    }
+
+    /// <summary>
+    /// Why a Tar Extractor can't be placed here (a translation token), or null if it can: it must be in a tar pit,
+    /// and the pit must have room under the Max Per Pit setting.
+    /// </summary>
+    internal static string PlacementProblem(Vector3 position)
+    {
+        Location pit = Find(position);
+        if (pit == null)
+        {
+            return "$msg_tarextractor_needstarpit";
+        }
+
+        int max = TarExtractorPlugin._maxPerPit.Value;
+        return max > 0 && TarExtractor.CountIn(pit) >= max ? "$msg_tarextractor_pitfull" : null;
     }
 
     private static void Refresh()
