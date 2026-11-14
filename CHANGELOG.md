@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Moved the source files into folders (`Core`, `Extractor`, `Prefabs`, `Patches`), leaving only `Plugin.cs` at the root, with each Harmony patch in its own file under `Patches`. Building the Tar Extractor piece and loading translations moved out of `Plugin.cs` too. No behaviour change.
+
 ## 0.4.0
 
 - Collecting Tar is now handled by whoever's game is looking after the extractor, like the vanilla Sap Extractor, so two players collecting at the same moment can no longer both get the Tar.

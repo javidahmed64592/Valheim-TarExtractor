@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 
+using TarExtractorMod.Prefabs;
+
 using UnityEngine;
 
-namespace TarExtractorMod;
+namespace TarExtractorMod.Extractor;
 
 /// <summary>
 /// Replaces the vanilla SapCollector logic on the cloned Sap Extractor.
@@ -37,7 +39,7 @@ public class TarExtractor : MonoBehaviour, Hoverable, Interactable
         _nview.Register(ExtractRpc, RPC_Extract);
         _nview.Register<bool>(ResultRpc, RPC_Result);
 
-        Transform notEmpty = TarExtractorPlugin.FindChild(transform, TarExtractorPlugin.NotEmptyEffectName);
+        Transform notEmpty = TarExtractorPrefab.FindChild(transform, TarExtractorPrefab.NotEmptyEffectName);
         _notEmptyEffect = notEmpty != null ? notEmpty.gameObject : null;
 
         InvokeRepeating(nameof(UpdateTick), UnityEngine.Random.Range(0f, 2f), 2f);
