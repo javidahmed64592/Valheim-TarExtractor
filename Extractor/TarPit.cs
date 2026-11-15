@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace TarExtractorMod;
+namespace TarExtractorMod.Extractor;
 
 /// <summary>
 /// Works out whether a position is inside a tar pit location (TarPit1/2/3).
