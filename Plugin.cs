@@ -19,7 +19,7 @@ public class TarExtractorPlugin : BaseUnityPlugin
 {
     public const string PluginGUID = "javidahmed64592.tarextractor";
     public const string PluginName = "Tar Extractor";
-    public const string PluginVersion = "0.4.0";
+    public const string PluginVersion = "1.0.0";
 
     internal static ManualLogSource _log;
     internal static ConfigEntry<float> _secondsPerTar;

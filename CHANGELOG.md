@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.0.0
 
+- First stable release. The features are unchanged from 0.4.0.
 - Moved the source files into folders (`Core`, `Extractor`, `Prefabs`, `Patches`), leaving only `Plugin.cs` at the root, with each Harmony patch in its own file under `Patches`. Building the Tar Extractor piece and loading translations moved out of `Plugin.cs` too. No behaviour change.
 
 ## 0.4.0
