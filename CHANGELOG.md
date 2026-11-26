@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- If a game update breaks part of the mod, only that part turns off and the rest keeps working: if the message for a blocked placement stops working, the Tar Extractor can still only be built in a tar pit. The log says which part is off, in one line. If the Tar Extractor itself breaks, the whole mod turns off cleanly instead of throwing errors.
+- New `DisabledFeatures` setting under `[Debug]`, for testing: turns parts of the mod off by name.
+
 ## 1.0.0
 
 - First stable release. The features are unchanged from 0.4.0.

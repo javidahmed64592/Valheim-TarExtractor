@@ -1,5 +1,6 @@
 using HarmonyLib;
 
+using TarExtractorMod.Core;
 using TarExtractorMod.Extractor;
 
 namespace TarExtractorMod.Patches;
@@ -9,8 +10,12 @@ namespace TarExtractorMod.Patches;
 /// when the player presses the place button while the ghost is blocked.
 /// </summary>
 [HarmonyPatch(typeof(Player), "UpdatePlacement")]
+[Feature(Feature)]
 internal static class Player_UpdatePlacement_Patch
 {
+    /// <summary>Without it, a blocked placement fails silently, as in vanilla.</summary>
+    public const string Feature = "Blocked placement message";
+
     /// <summary>
     /// __0 = takeInput (positional so a parameter rename doesn't break the patch)
     /// </summary>
