@@ -31,11 +31,13 @@ Find it in the Hammer's **Crafting** tab. It needs a Workbench nearby and the sa
 
 Settings are in the BepInEx config file `javidahmed64592.tarextractor.cfg`.
 Settings marked "(Synced with server)" use the server's values when the server has the mod installed.
+`DisabledFeatures` under `[Debug]` is for testing: it turns parts of the mod off by name. Leave it empty to play normally.
 
 ## Compatibility
 
 - The Tar Extractor is built from the vanilla Sap Extractor, so mods that change the Sap Extractor may change it too.
 - It looks for the vanilla tar pit locations, so world generation mods that rename or replace them may stop it being placed.
+- If a game update breaks part of the mod, that part turns off on its own and the log says which one; the rest keeps working.
 - This mod has not been tested with a gamepad, only with keyboard and mouse.
 
 ## Uninstalling

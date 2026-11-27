@@ -54,13 +54,16 @@ public class TarExtractorPlugin : BaseUnityPlugin
                 new AcceptableValueRange<int>(0, 100),
                 new ConfigurationManagerAttributes { IsAdminOnly = true }));
 
+        _harmony = new Harmony(PluginGUID);
+        if (!SafePatcher.PatchAll(_harmony, Config, Logger))
+        {
+            return;
+        }
+
         Translations.Load();
 
         // The Sap Extractor prefab only exists once vanilla prefabs are loaded.
         PrefabManager.OnVanillaPrefabsAvailable += TarExtractorPrefab.Register;
-
-        _harmony = new Harmony(PluginGUID);
-        _harmony.PatchAll();
     }
 
     private void OnDestroy()
